@@ -16,16 +16,16 @@ namespace IdStrings
 	// Forward Declaration
 	struct IdString;
 
-	class IdTable {
+	class IdTable
+	{
 		friend IdString;
 
 		using Container     = ska::bytell_hash_set<StringKey>;
 		using Iterator      = Container::iterator;
 		using ConstIterator = Container::const_iterator;
 
-
 		Container table;
-		// Mutex that allows sync reads but waits for registries
+		// Allows multiple reads but locks for new registries
 		mutable std::shared_mutex editTableMutex;
 
 
@@ -79,7 +79,8 @@ namespace IdStrings
 		IdString& operator=(const IdString& other) = default;
 		IdString& operator=(IdString&& other) { std::swap(id, other.id); return *this; }
 
-		const String& ToString() const {
+		const String& ToString() const
+		{
 			if (IsNone())
 				return Constants::noneStr;
 			else
@@ -106,8 +107,8 @@ namespace IdStrings
 
 	// DLL Export
 
-	DLL_API uint64_t RegisterString(const char* str, size_t size);
+	DLL_API uint64_t RegisterString(const CharType* str, size_t size);
 
-	DLL_API const char* FindString(uint64_t hash, size_t& size);
+	DLL_API const CharType* FindString(uint64_t hash, size_t& size);
 }
 }

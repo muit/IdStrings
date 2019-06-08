@@ -10,7 +10,9 @@ namespace IdStrings
 	size_t IdTable::Register(const String& string)
 	{
 		if (string.empty())
+		{
 			return Constants::noneId;
+		}
 
 		// Calculate hash once
 		StringKey key{ string };
@@ -29,12 +31,12 @@ namespace IdStrings
 	}
 
 
-	uint64_t RegisterString(const char* str, size_t size)
+	uint64_t RegisterString(const CharType* str, size_t size)
 	{
 		return IdTable::GetGlobal().Register({ String{str, size} });
 	}
 
-	const char* FindString(uint64_t hash, size_t& size)
+	const CharType* FindString(uint64_t hash, size_t& size)
 	{
 		const String& str = IdTable::GetGlobal().Find(hash);
 		size = str.size();

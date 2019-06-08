@@ -5,5 +5,4 @@ namespace IdStrings
 {
 	const String Constants::noneStr{ "" };
 	const size_t Constants::noneId{ 0 };
-
 }

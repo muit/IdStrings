@@ -24,6 +24,17 @@ In **Cpp** serialization is not implemented in favor of any custom solution the 
 
 In **Unity** an IdString is serialized as an string directly. (It also has the benefit that debugging it it considerably easier)
 
+## Multithreading
+
+IdStrings have support for Multithreading. They can be created from different threads without conflicts.
+This is done using shared_mutex. That way the library only locks while registering a new string, but not while reading.
+
+- If a new string is registered, it locks all reads
+- If an already existing string is registered, it won't lock reads
+- Reads won't lock unless a registry arrives at the same time
+
+Registering an string is a very quick and uncommon operation so in the majority of the cases mutex won't even be locked and other threads wont be delayed.
+
 ## ToDo
 
 There's one single main feature missing which is the removal of unused strings from the table. This is usually not a problem because strings are never duplicated on the table, but if we are constantly generating different names, the table won't free them.
