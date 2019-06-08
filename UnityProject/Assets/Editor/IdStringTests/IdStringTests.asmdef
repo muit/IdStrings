@@ -1,0 +1,19 @@
+{
+    "name": "IdStringTests",
+    "references": [
+        "GUID:8dcfaa7eecb9f704f9b751d76f62c265"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": []
+}
